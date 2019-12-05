@@ -15,3 +15,4 @@ variable sanity_rolename {
 variable openstack_sanity_password {
   default = "s@n!ty"
 }
+variable "project_id" {}

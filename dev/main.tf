@@ -16,6 +16,7 @@ provider "openstack"{
 
 module "sanity_proj" {
   source = "../modules/project"
+  project_id="${module.sanity_proj.project_id}"
 }
 
 

@@ -10,8 +10,10 @@
 ################
 resource "openstack_networking_router_v2" "router" {
   name                = "${var.router_name}"
-  admin_state_up      = false
+  admin_state_up      = "false"
   external_network_id = "45d3d1ac-f2a8-4b69-85c0-e8cbfc7f3552"
+//  enable_snat = "true"
+//  external_gateway = "public"
 }
 ################
 ###  NETWORK ###
@@ -71,11 +73,3 @@ resource "openstack_networking_router_interface_v2" "router_interface_port_1"{
   subnet_id = "${var.subnet_id}"
 //  subnet_id = "${openstack_networking_subnet_v2.subnet.id}"
 }
-
-//######################
-//###   FLOATING IP  ###
-//######################
-//#Creating floating ip
-//resource "openstack_networking_floatingip_v2" "floatip_1" {
-//  pool = "public"
-//}

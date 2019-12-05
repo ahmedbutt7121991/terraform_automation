@@ -33,3 +33,11 @@ module "my_network" {
   project_name = "sanity_1"
 //  network_id = "${module.my_network.output_network_id}"
 }
+
+module "my_instance" {
+  source="../modules/instances"
+  port_id="${module.my_network.port_id}"
+  instance_id="${module.my_instance.instance_id}"
+  flaot_ip="${module.my_instance.flaot_ip}"
+  private_ip="${module.my_instance.private_ip}"
+}

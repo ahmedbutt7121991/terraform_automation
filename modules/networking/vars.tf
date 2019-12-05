@@ -58,7 +58,7 @@ variable "floatip_name" {
 variable "project_name" {
   default = "admin"
 }
-
-data "openstack_identity_project_v3" "project_1" {
-  name = "${var.project_name}"
-}
+//
+//data "openstack_identity_project_v3" "project_1" {
+//  name = "${var.project_name}"
+//}
