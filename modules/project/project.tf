@@ -1,6 +1,6 @@
 #CREATING NEW PROJECT AND USER
 ##################################
-#######     PROJECT   ############
+#######   MODE PROJECT   #########
 ##################################
 #Creating a Project
 resource "openstack_identity_project_v3" "sanity_project" {

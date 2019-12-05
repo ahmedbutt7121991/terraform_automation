@@ -1,11 +1,16 @@
+###############################
+####### MODE NETWORK   ########
+###############################
+
 #Variable declaration and default value assignment
 variable "router_name" {
   default = "router_1"
 }
-
 variable "public_network" {
   default = "public"
 }
+variable "router_id" {}
+
 #========== NETWORK VARS
 variable "network_name" {
   default = "network_1"
@@ -19,6 +24,8 @@ variable "network_type" {
 variable "physical_network" {
   default = "physint"
 }
+variable "network_id" {}
+
 #========== SUBNET VARS
 variable "subnet_name" {
   default = "subnet_1"
@@ -33,6 +40,8 @@ variable "dns_nameservers" {
   type = list
   default = ["8.8.8.8", "8.8.4.4"]
 }
+variable "subnet_id" {}
+
 #=========== PORT VAS
 variable "port_name" {
   default = "port_1"
@@ -40,6 +49,7 @@ variable "port_name" {
 variable "ip_address" {
   default = "192.168.70.10"
 }
+variable "port_id" {}
 
 variable "floatip_name" {
   default = "floatip_1"

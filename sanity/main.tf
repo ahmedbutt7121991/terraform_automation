@@ -1,3 +1,7 @@
+###############################
+####### SANITY SCRI   #########
+###############################
+
 #MAIN SCRIPT
 #MAIN file for calling modules and creating resource
 provider "openstack"{
@@ -10,14 +14,22 @@ provider "openstack"{
   disable_no_cache_header       = true
 }
 
+module "my_general" {
+  source = "../modules/general"
+}
+
 module "my_network" {
   source = "../modules/networking"
   router_name = "sanity_router"
+  router_id="${module.my_network.router_id}"
   network_name = "sanity_network"
+  network_id="${module.my_network.network_id}"
   subnet_name = "sanity_subnet"
   cidr        = "192.168.90.0/24"
+  subnet_id="${module.my_network.subnet_id}"
   port_name = "sanity_port"
   ip_address = "192.168.90.10"
+  port_id="${module.my_network.port_id}"
   project_name = "sanity_1"
 //  network_id = "${module.my_network.output_network_id}"
 }

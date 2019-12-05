@@ -1,3 +1,7 @@
+##################################
+#######   MODE PROJECT   #########
+##################################
+
 #CREATING VARIABLES DECLARATION
 variable sanity_username {
   default = "sanity_1"

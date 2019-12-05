@@ -1,3 +1,7 @@
+###############################
+####### DEVELOPMENT   #########
+###############################
+
 #Declare Auth Vars
 variable "ADMIN_USERNAME" {}
 variable "ADMIN_TENANTNAME" {}

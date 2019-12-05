@@ -1,3 +1,7 @@
+###############################
+####### SANITY SCRI   #########
+###############################
+
 #VAR DECLARED FILE
 #Declare Auth Vars
 variable "SANITY_USERNAME" {}
