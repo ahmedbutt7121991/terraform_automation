@@ -1,7 +1,13 @@
 ###############################
 ####### MOD INSTANCE   ########
 ###############################
-
+######################
+###   FLOATING IP  ###
+######################
+#Creating floating ip
+resource "openstack_networking_floatingip_v2" "sanity_floatip" {
+  pool = "public"
+}
 #CREATING INSTANCE
 ###########################################
 #######     COMPUTE ITEMS   ###############
@@ -20,24 +26,19 @@ resource "openstack_compute_instance_v2" "sanity_instance_1" {
     port = "${var.port_id}"
   }
 }
-######################
-###   FLOATING IP  ###
-######################
-#Creating floating ip
-resource "openstack_networking_floatingip_v2" "sanity_floatip" {
-  pool = "public"
-}
+
 ###########################################
 ####### FLOATING IP -> INSTANCE   #########
 ###########################################
 resource "openstack_compute_floatingip_associate_v2" "sanity_floatip_1" {
   floating_ip = "${openstack_networking_floatingip_v2.sanity_floatip.address}"
   instance_id = "${var.instance_id}"
-  wait_until_associated = "true"
-//  depends_on = ["openstack_compute_floatingip_associate_v2.sanity_floatip_1",]
-//    provisioner "local-exec" {
-//    command = "echo private_ip: ${openstack_compute_instance_v2.instance_2.access_ip_v4} \n public_ip:  ${openstack_networking_floatingip_v2.floatip_2.address}"
-//  }
+//  wait_until_associated = true
+//  depends_on = ["openstack_networking_floatingip_v2.sanity_floatip",]
+    provisioner "local-exec" {
+//    command = "echo private_ip: ${openstack_compute_instance_v2.sanity_instance_1.access_ip_v4} \n public_ip:  ${openstack_networking_floatingip_v2.sanity_floatip.address}"
+      command = "ping -c 20 google.com"
+    }
   connection {
       user     = "${var.ssh_user_name}"
       host     = "${openstack_networking_floatingip_v2.sanity_floatip.address}"
@@ -47,7 +48,8 @@ resource "openstack_compute_floatingip_associate_v2" "sanity_floatip_1" {
     inline = [
       "sudo ifconfig",
       "ping -c 5 8.8.8.8",
-//      "ping -c 10 192.168.90.10"
+      "ping -c 10 192.168.90.1",
+      "ping -c 5 google.com"
     ]
 }
 }

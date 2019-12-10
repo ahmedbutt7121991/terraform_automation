@@ -20,7 +20,6 @@ module "my_general" {
 
 module "my_network" {
   source = "../modules/networking"
-  router_name = "sanity_router"
   router_id="${module.my_network.router_id}"
   network_name = "sanity_network"
   network_id="${module.my_network.network_id}"

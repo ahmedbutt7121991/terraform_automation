@@ -21,7 +21,6 @@ resource "openstack_networking_router_v2" "router" {
 # PARENT Network Resource Creation
 resource "openstack_networking_network_v2" "network" {
   name = "${var.network_name}"
-  admin_state_up = false
 //  segments {
 //    segmentation_id   = "${var.segment_id}"
 //    network_type = "${var.network_type}"
@@ -57,7 +56,6 @@ resource "openstack_networking_port_v2" "port" {
 
     name           = "${var.port_name}"
     network_id = "${var.network_id}"
-    admin_state_up = false
 
     fixed_ip {
     subnet_id = "${var.subnet_id}"
