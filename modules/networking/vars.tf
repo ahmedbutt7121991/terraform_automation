@@ -62,3 +62,5 @@ variable "project_name" {
 //data "openstack_identity_project_v3" "project_1" {
 //  name = "${var.project_name}"
 //}
+#DATA SOURCES DECLARATION
+//data "openstack_networking_secgroup_v2" "security_group_id" {}
