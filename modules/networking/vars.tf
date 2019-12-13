@@ -9,6 +9,12 @@ variable "router_name" {
 variable "public_network" {
   default = "public"
 }
+
+data "openstack_networking_network_v2" "network" {
+  name = "public"
+}
+
+variable "secgroup_id" {}
 variable "router_id" {}
 
 #========== NETWORK VARS

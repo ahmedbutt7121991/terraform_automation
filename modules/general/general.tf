@@ -24,6 +24,43 @@ resource "openstack_images_image_v2" "centos_1" {
   container_format = "bare"
   disk_format      = "qcow2"
 }
+####################
+###SECURITY GROUP###
+####################
+resource "openstack_networking_secgroup_v2" "sanity_secgroup" {
+  name        = "sanity_secgroup"
+  description = "Sanity neutron security group"
+}
+##########################
+###SECURITY GROUP RULES###
+##########################
+resource "openstack_networking_secgroup_rule_v2" "sanity_tcp_ingress_secgroup_rules" {
+  direction = "ingress"
+  ethertype = "IPv4"
+  protocol = "tcp"
+  port_range_min = 22
+  port_range_max = 22
+  remote_ip_prefix = "0.0.0.0/0"
+  security_group_id = openstack_networking_secgroup_v2.sanity_secgroup.id
+}
+resource "openstack_networking_secgroup_rule_v2" "sanity_icmp_ingress_secgroup_rules" {
+  direction = "ingress"
+  ethertype = "IPv4"
+  protocol = "icmp"
+  remote_ip_prefix = "0.0.0.0/0"
+  security_group_id = openstack_networking_secgroup_v2.sanity_secgroup.id
+}
+resource "openstack_networking_secgroup_rule_v2" "sanity_icmp_egress_secgroup_rules" {
+  direction = "egress"
+  ethertype = "IPv4"
+  protocol = "icmp"
+  remote_ip_prefix = "0.0.0.0/0"
+  security_group_id = openstack_networking_secgroup_v2.sanity_secgroup.id
+}
+
+output "secgroup_id" {
+  value = openstack_networking_secgroup_v2.sanity_secgroup.id
+}
 ###############################
 #######     FLAVOR   ##########
 ###############################

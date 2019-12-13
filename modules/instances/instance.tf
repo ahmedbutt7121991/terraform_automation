@@ -17,11 +17,11 @@ resource "openstack_networking_floatingip_v2" "sanity_floatip" {
 ##################################################
 resource "openstack_compute_instance_v2" "sanity_instance_1" {
   name            = "sanity_instance_1"
-  security_groups = ["sanity_secgroup"]
+//  security_groups = [data.openstack_networking_secgroup_v2.secgroup.name,]
   image_name	= "centos_1"#var.IMAGE_NAME
   flavor_name	= "sanity_flavor"#var.FLAVOR_NAME
   key_pair	= "ssh-key"#var.SSH_KEY_NAME
-  availability_zone = data.openstack_compute_availability_zones_v2.zones.names[2]##USING DATA SOURCES
+  availability_zone = data.openstack_compute_availability_zones_v2.zones.names.2##USING DATA SOURCES
   network {
     port = var.port_id
   }

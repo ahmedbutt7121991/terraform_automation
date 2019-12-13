@@ -16,6 +16,7 @@ provider "openstack"{
 
 module "my_general" {
   source = "../modules/general"
+  secgroup_id=module.my_general.secgroup_id
 }
 
 module "my_network" {
@@ -30,6 +31,7 @@ module "my_network" {
   ip_address = "192.168.90.10"
   port_id=module.my_network.port_id
   project_name = "sanity_1"
+  secgroup_id=module.my_general.secgroup_id
 //  network_id = module.my_network.output_network_id
 }
 

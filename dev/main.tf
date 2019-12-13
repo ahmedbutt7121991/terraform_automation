@@ -20,9 +20,9 @@ provider "openstack"{
 ####################        PUBLIC NETWORK            #########################
 ###############################################################################
 ###############################################################################
-resource "openstack_networking_network_v2" "public" {                     ###
-  name           = "public"                                               ###
-//  admin_state_up = "true"                                                   ###
+resource "openstack_networking_network_v2" "public" {                       ###
+  name           = "public"                                                 ###
+  admin_state_up = true                                                     ###
   external = true                                                           ###
   segments {                                                                ###
     segmentation_id   = "604"                                               ###
@@ -37,7 +37,7 @@ resource "openstack_networking_network_v2" "public" {                     ###
 ###############################################################################
 resource "openstack_networking_subnet_v2" "external_subnet" {               ###
   name       = "external_subnet"                                            ###
-  network_id = openstack_networking_network_v2.public.id                  ###
+  network_id = openstack_networking_network_v2.public.id                    ###
   cidr       = "100.67.60.192/26"                                           ###
   gateway_ip = "100.67.60.193"                                              ###
   allocation_pool {                                                         ###
