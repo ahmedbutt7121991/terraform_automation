@@ -8,4 +8,5 @@
 ## Dev.
 ## Sanity.
 
-# Sanity -> Modules -> Dev
+# Sanity -> Modules (Network, Instance, General)
+# Dev -> Project Module
